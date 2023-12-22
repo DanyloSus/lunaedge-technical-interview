@@ -1,11 +1,12 @@
-import { useState } from 'react'
+import { useState } from "react";
+import Input from "./elements/Input";
 
 function App() {
   return (
     <div>
-      <p>Welcome to Luna Edge technical interview</p>
+      <Input label="Text" type="text" id="text" required information="Info" />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -10,6 +10,8 @@ export default {
         gray: "#605f6f",
         primary: "#4825c8",
         error: "#f87071",
+        "bg-disabled": "#edf2ff",
+        "text-disabled": "#c6d2ff",
       },
     },
   },

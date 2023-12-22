@@ -1,0 +1,31 @@
+.Input {
+  @apply flex flex-col gap-2 w-full max-w-[400px];
+}
+
+.Input__InfoBlock {
+  @apply flex justify-between;
+}
+
+.Input__Label {
+  @apply text-black font-bold flex gap-1 items-center;
+}
+
+.Input__InfoIcon {
+  @apply w-5 h-5;
+}
+
+.Input__Info {
+  @apply text-gray;
+}
+
+.Input__Icon {
+  @apply absolute p-[10px] w-10 h-10;
+}
+
+.Input__InputBlock {
+  @apply w-full;
+}
+
+.Input__Input {
+  @apply border border-solid border-border rounded-lg px-4 pl-9 py-3 w-full h-10 flex items-center hover:border-primary hover:border-[3px] focus:border-primary focus:border-[3px] invalid:border-error invalid:border-[3px] transition-all;
+}
