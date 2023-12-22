@@ -1,0 +1,39 @@
+.Button {
+  @apply rounded-md flex items-center gap-1 font-bold;
+}
+
+.Button__Icon {
+  @apply w-full max-w-4 max-h-4 min-w-3 min-h-3 h-full;
+}
+
+.outline {
+  @apply border border-primary fill-primary text-primary hover:bg-bg-blue hover:text-text-blue hover:border-text-blue active:bg-bg-blue active:text-text-blue active:border-text-blue disabled:border-0 disabled:opacity-70 disabled:bg-bg-blue disabled:text-text-blue disabled:border-text-blue focus:border-2 transition-all border-solid;
+}
+
+.primary {
+  @apply border-0 bg-primary text-white hover:bg-soft-primary active:bg-soft-primary focus:border-2 border-primary focus:bg-soft-primary disabled:border-0 disabled:opacity-70 disabled:bg-bg-blue disabled:text-text-blue disabled:border-text-blue border-solid transition-all;
+}
+
+.text {
+  @apply text-black border-0 hover:bg-bg-blue hover:text-soft-primary hover:border-soft-primary active:bg-bg-blue active:text-soft-primary active:border-soft-primary disabled:border-0 disabled:opacity-50 disabled:bg-transparent disabled:text-soft-primary disabled:border-soft-primary focus:border-2 transition-all border-solid;
+}
+
+.xs {
+  @apply text-xs h-5 px-1;
+}
+
+.sm {
+  @apply text-sm h-6 px-2;
+}
+
+.base {
+  @apply text-base h-8 px-3;
+}
+
+.lg {
+  @apply text-sm h-10 px-4;
+}
+
+.xl {
+  @apply text-sm h-12 px-5;
+}
