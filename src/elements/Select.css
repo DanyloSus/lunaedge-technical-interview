@@ -29,7 +29,7 @@
 }
 
 .Select__List {
-  @apply absolute top-6 rounded-[4px] hidden border-[3px] border-solid border-primary list-none w-full left-0 p-1 text-black;
+  @apply absolute top-10 bg-white rounded-[4px] hidden border-[3px] border-solid border-primary list-none w-full left-0 p-1 text-black;
 }
 
 .Select__List.Show {
