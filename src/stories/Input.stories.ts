@@ -19,5 +19,17 @@ export const Primary: Story = {
     id: "text",
     required: true,
     information: "Info text",
+    disabled: false,
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    label: "Email",
+    type: "email",
+    id: "email",
+    required: false,
+    information: "Info text",
+    disabled: true,
   },
 };

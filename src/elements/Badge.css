@@ -1,0 +1,11 @@
+.Badge {
+  @apply flex gap-1 items-center w-min bg-gray text-black rounded-lg py-[2px] px-[10px] cursor-pointer;
+}
+
+.Badge__Icon {
+  @apply w-full h-full;
+}
+
+.Badge__Button {
+  @apply border-0 w-4 h-4 flex items-center p-0 cursor-pointer;
+}
