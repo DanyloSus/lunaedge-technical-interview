@@ -1,23 +1,35 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Input from "./elements/Input";
 import Button from "./elements/Button";
 import Select from "./elements/Select";
 
 import "./App.css";
+import axios from "axios";
 
-type Option = {
+export type PokemonOption = {
   name: string;
-  value: number;
+  url: string;
 };
 
-const options: Option[] = [
-  { name: "sus", value: 1 },
-  { name: "sus", value: 2 },
-  { name: "sus", value: 3 },
-];
+export type PokemonValue = {
+  name: string;
+  url: string;
+  id: number;
+};
 
 function App() {
-  const [pokemons, setPokemons] = useState<any[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonValue[]>([]);
+  const [pokemonArray, setPokemonArray] = useState<PokemonOption[]>([]);
+
+  useEffect(() => {
+    try {
+      axios
+        .get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1302")
+        .then((response) => setPokemonArray(response.data.results));
+    } catch (error) {
+      console.error("Error fetching Pokémon data:", error);
+    }
+  }, []);
 
   return (
     <main className="Main">
@@ -74,13 +86,13 @@ function App() {
         </div>
         <Select
           values={pokemons}
-          options={options}
+          options={pokemonArray}
           placeholder="Check"
           onChange={(pokemon) => setPokemons(pokemon)}
           label="Pokemons"
           required
           id="pokemons"
-          information="In Pokemon Tower you can use only four yout Pokemons"
+          information="In Pokemon Tower you can use only four your Pokemons"
           disabled={false}
         />
         <Button text="Submit" size="base" variant="primary" disabled={false} />

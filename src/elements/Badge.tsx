@@ -2,14 +2,21 @@ import "./Badge.css";
 
 type BadgeProps = {
   name: string;
-  delete: () => void;
+  type: "add" | "delete";
+  onClick: () => void;
 };
 
 const Badge = (props: BadgeProps) => {
   return (
-    <div className="Badge" onClick={props.delete}>
-      <span>{props.name}</span>
-      <button className="Badge__Button">
+    <div className="Badge" onClick={props.onClick}>
+      <span
+        className={`${
+          props.type === "delete" ? "Badge__Text_Delete" : "Badge__Text_Add"
+        }`}
+      >
+        {props.name}
+      </span>
+      {props.type === "delete" ? (
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 24 24"
@@ -22,7 +29,7 @@ const Badge = (props: BadgeProps) => {
             clipRule="evenodd"
           />
         </svg>
-      </button>
+      ) : null}
     </div>
   );
 };

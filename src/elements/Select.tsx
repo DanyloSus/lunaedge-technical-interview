@@ -2,17 +2,17 @@ import { useState } from "react";
 
 import "./Select.css";
 import Badge from "./Badge";
+import { PokemonOption, PokemonValue } from "../App";
 
 type SelectProps = {
   placeholder: string;
-  values: any[];
-  options: any[];
+  values: PokemonValue[];
+  options: PokemonOption[];
   onChange: (name: any) => void;
 
   label: string;
   id: string;
   required: boolean;
-  type: "text" | "number" | "email";
   information: string;
   disabled: boolean;
 };
@@ -20,15 +20,15 @@ type SelectProps = {
 const Select = (props: SelectProps) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const addPokemon = (pokemon: any) => {
-    props.onChange([...props.values, pokemon]);
+  const addPokemon = (pokemon: PokemonOption, index: number) => {
+    if (props.values.length <= 3) {
+      props.onChange([...props.values, { ...pokemon, id: index }]);
+    }
   };
 
-  const deletePokemon = (pokemon: any) => {
-    const filtered = props.values.filter(
-      (value) => value.value !== pokemon.value
-    );
-    console.log(filtered);
+  const deletePokemon = (pokemon: PokemonValue) => {
+    const filtered = props.values.filter((value) => value.id !== pokemon.id);
+    console.log(pokemon);
     props.onChange(filtered);
   };
 
@@ -74,7 +74,8 @@ const Select = (props: SelectProps) => {
                 ? props.values.map((pokemon) => (
                     <Badge
                       name={pokemon.name}
-                      delete={() => {
+                      type="delete"
+                      onClick={() => {
                         deletePokemon(pokemon);
                       }}
                     />
@@ -119,18 +120,17 @@ const Select = (props: SelectProps) => {
             </svg>
           </button>
           <ul className={`Select__List ${isOpen ? "Show" : ""}`}>
-            {props.options.map((option: any) => (
-              <li
-                className="Select__List__Element"
-                key={option.value}
-                onClick={() => {
-                  addPokemon(option);
-                  console.log(option);
-                }}
-              >
-                {option.name}
-              </li>
-            ))}
+            {props.options.map((option: PokemonOption) => {
+              const id = Math.random();
+              return (
+                <Badge
+                  key={id}
+                  name={option.name}
+                  type="add"
+                  onClick={() => addPokemon(option, id)}
+                />
+              );
+            })}
           </ul>
         </div>
       </div>

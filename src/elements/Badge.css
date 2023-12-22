@@ -1,11 +1,27 @@
 .Badge {
-  @apply flex gap-1 items-center w-min bg-gray text-black rounded-lg py-[2px] px-[10px] cursor-pointer;
+  @apply flex gap-1 items-center w-min max-h-7 bg-[#f4f4f6] text-black rounded-lg py-[2px] px-[10px] cursor-pointer;
+
+  &:hover > .Badge__Icon {
+    @apply opacity-100;
+  }
+
+  &:hover {
+    @apply bg-black text-white;
+  }
+}
+
+.Badge__Text_Delete {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  @apply max-w-8 text-ellipsis overflow-hidden;
+}
+
+.Badge__Text_Add {
+  @apply text-nowrap;
 }
 
 .Badge__Icon {
-  @apply w-full h-full;
-}
-
-.Badge__Button {
-  @apply border-0 w-4 h-4 flex items-center p-0 cursor-pointer;
+  @apply w-4 h-4 opacity-30 transition-opacity;
 }
