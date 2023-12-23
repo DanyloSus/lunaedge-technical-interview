@@ -169,7 +169,7 @@ function App() {
             4 pokemons.
           </p>
           <form className="Main__Form" onSubmit={handleSubmit}>
-            <div className="flex gap-3 w-full">
+            <div className="flex flex-col items-center sm:flex-row gap-3 w-full">
               <Input
                 label="Name"
                 type="text"
