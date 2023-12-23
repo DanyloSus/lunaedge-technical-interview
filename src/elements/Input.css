@@ -27,5 +27,9 @@
 }
 
 .Input__Input {
-  @apply border border-solid border-border rounded-lg px-4 pl-9 py-3 w-full h-10 flex items-center hover:border-primary hover:border-[3px] focus:border-primary focus:border-[3px] invalid:border-error invalid:border-[3px] transition-all disabled:border-0 disabled:bg-bg-blue disabled:text-text-blue;
+  @apply border border-solid border-border rounded-lg px-4 pl-9 py-3 w-full h-10 flex items-center hover:border-primary hover:border-[3px] focus:border-primary focus:border-[3px] transition-all disabled:border-0 disabled:bg-bg-blue disabled:text-text-blue;
+}
+
+.Input__Invalid {
+  @apply border-error border-[3px];
 }

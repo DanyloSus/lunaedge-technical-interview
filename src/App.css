@@ -1,7 +1,7 @@
 .Main {
   transform: translate(-50%, -50%);
   @apply flex gap-3 flex-col max-w-[674px] w-full
-    shadow-lg p-8 pb-[20px] absolute top-1/2 left-1/2;
+    shadow-lg p-8 pb-5 absolute top-1/2 left-1/2;
 }
 
 .Main__Header {
@@ -15,4 +15,24 @@
 
 .Main__Form {
   @apply flex gap-3 flex-col items-center;
+}
+
+.Modal {
+  @apply flex flex-col;
+}
+
+.Modal__Header {
+  @apply flex justify-between items-center;
+}
+
+.Modal__Heading {
+  @apply text-black font-bold text-xl;
+}
+
+.Modal__Content {
+  @apply w-full h-full overflow-y-auto flex flex-col gap-3 mt-3 sm:max-h-[323px];
+}
+
+.Modal__Footer {
+  @apply w-full border-t-border border-t border-solid flex items-center justify-center pt-5 gap-3;
 }

@@ -5,6 +5,7 @@ interface ButtonProps {
   text: string;
   size: "xs" | "sm" | "base" | "lg" | "xl";
   disabled: boolean;
+  onClick?: () => void;
 }
 
 const Button = (props: ButtonProps) => {
@@ -12,6 +13,7 @@ const Button = (props: ButtonProps) => {
     <button
       className={`Button ${props.variant} ${props.size}`}
       disabled={props.disabled}
+      onClick={props.onClick}
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

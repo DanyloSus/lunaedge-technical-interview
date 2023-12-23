@@ -1,0 +1,15 @@
+.ModalElement {
+  @apply flex justify-between items-center border-bg-blue border-dotted border-2 px-3;
+}
+
+.ModalElement__Heading {
+  @apply font-bold capitalize text-xl;
+}
+
+.ModalElement__Paragraph {
+  @apply capitalize;
+}
+
+.ModalElement__Image {
+  @apply w-28 h-28 object-cover;
+}

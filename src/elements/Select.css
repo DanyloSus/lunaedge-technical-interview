@@ -1,5 +1,18 @@
 .Select {
-  @apply border border-solid border-border rounded-[4px] px-3 py-2 w-full h-10 flex gap-1 items-center hover:border-primary hover:border-[3px] focus:border-primary focus:border-[3px] invalid:border-error invalid:border-[3px] transition-all disabled:border-0 disabled:bg-bg-blue disabled:text-text-blue relative;
+  @apply border border-solid border-border rounded-[4px] px-3 py-2 w-full h-10 flex gap-1 items-center hover:border-primary hover:border-[3px] focus:border-primary focus:border-[3px] transition-all  relative;
+}
+
+.Select__Disabled {
+  @apply border-0 bg-bg-blue text-text-blue hover:border-0 cursor-default;
+
+  & .Select__Values,
+  & .Select__Icons {
+    @apply cursor-default;
+  }
+}
+
+.Select__Invalid {
+  @apply border-error border-[3px];
 }
 
 .Select_Gray {
@@ -19,13 +32,11 @@
 }
 
 .Select__Icons {
-  transform: rotate(0deg);
+  @apply w-5 h-5 border cursor-pointer transition-all rotate-0 hover:scale-125;
 
-  @apply w-5 h-5 border cursor-pointer transition-all;
-}
-
-.Select__Icons_Active {
-  transform: rotate(180deg);
+  &.Select__Icons_Active {
+    @apply rotate-180;
+  }
 }
 
 .Select__List {
