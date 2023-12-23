@@ -14,8 +14,31 @@ type Story = StoryObj<typeof Select>;
 
 export const SelectPrimary: Story = {
   args: {
-    text: "Check",
+    placeholder: "Check",
     values: [],
     onChange: () => {},
+    options: [],
+    disabled: false,
+  },
+};
+
+export const SelectDisabled: Story = {
+  args: {
+    placeholder: "Disabled",
+    values: [],
+    onChange: () => {},
+    options: [],
+    disabled: true,
+  },
+};
+
+export const SelectError: Story = {
+  args: {
+    placeholder: "Error",
+    values: [],
+    onChange: () => {},
+    options: [],
+    disabled: false,
+    error: true,
   },
 };

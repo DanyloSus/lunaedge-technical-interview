@@ -15,6 +15,15 @@ type Story = StoryObj<typeof Badge>;
 export const Primary: Story = {
   args: {
     name: "Text",
-    delete: () => {},
+    onClick: () => {},
+    type: "add",
+  },
+};
+
+export const Delete: Story = {
+  args: {
+    name: "Delete",
+    onClick: () => {},
+    type: "delete",
   },
 };
