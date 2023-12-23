@@ -21,6 +21,7 @@ interface InputProps {
   onChange?: () => void;
   value?: string;
   popText?: ReactNode;
+  placeholder?: string;
 
   select?: SelectProps;
 }
@@ -73,6 +74,7 @@ const Input = forwardRef(
                 disabled={props.disabled}
                 ref={ref}
                 onChange={props.onChange}
+                placeholder={props.placeholder}
               />
             </>
           )}

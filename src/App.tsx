@@ -28,6 +28,7 @@ export type PokemonValue = {
 
 // main Element
 function App() {
+  const [isLoading, setIsLoading] = useState<Boolean>(true); // state for check is all data downloaded
   const [isModal, setIsModal] = useState<Boolean>(false); // state for check is modal active
   const [isRegistered, setIsRegistered] = useState<Boolean>(false); // state for check is registered screen active
 
@@ -53,6 +54,7 @@ function App() {
   const surnameRef = createRef<HTMLInputElement>(); // Ref for get value of surname input
 
   useEffect(() => {
+    setIsLoading(true);
     try {
       axios
         .get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000") // get array of pokemons
@@ -60,6 +62,7 @@ function App() {
     } catch (error) {
       console.error("Error fetching Pokemon data:", error); // if some error, print it
     }
+    setIsLoading(false);
   }, []);
 
   const handleCancel = () => {
@@ -111,7 +114,15 @@ function App() {
 
   return (
     <main className="Main">
-      {isRegistered ? ( //check is register page active
+      {isLoading ? (
+        <img
+          src="/loading.gif"
+          alt="loading"
+          width={200}
+          height={200}
+          className="mx-auto"
+        />
+      ) : isRegistered ? ( //check is register page active
         <div className="text-center">
           <h1 className="font-bold text-2xl">
             Congratulations{" "}
@@ -185,6 +196,7 @@ function App() {
                 label="Name"
                 type="text"
                 id="name"
+                placeholder="John"
                 required
                 popText={
                   <p>
@@ -218,6 +230,7 @@ function App() {
                 type="text"
                 id="surname"
                 ref={surnameRef}
+                placeholder="Doe"
                 required
                 information={surnameInfo}
                 disabled={false}

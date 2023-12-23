@@ -21,11 +21,14 @@ type ModalProps = {
 };
 
 const ModalElement = (props: ModalProps) => {
+  const [isLoading, setIsLoading] = useState<Boolean>(true); // state for check is all data downloaded
+
   const [pokemonName, setPokemonName] = useState<string>(); // state of pokemon's name
   const [pokemonSprite, setPokemonSprite] = useState<string>(); // state of pokemon's sprite
   const [pokemonTypes, setPokemonTypes] = useState<TypeObject[]>(); // state of pokemon's types array
 
   useEffect(() => {
+    setIsLoading(true);
     const urlArray = props.url.split("/");
     const pokemonID = urlArray[urlArray.length - 2];
 
@@ -43,9 +46,18 @@ const ModalElement = (props: ModalProps) => {
     } catch (error) {
       console.error("Error fetching Pokemon data:", error); // if some error, print it
     }
+    setIsLoading(false);
   }, []);
 
-  return (
+  return isLoading ? (
+    <img
+      src="/loading.gif"
+      alt="loading"
+      width={100}
+      height={100}
+      className="mx-auto"
+    />
+  ) : (
     <div className="ModalElement">
       <div>
         <h3 className="ModalElement__Heading">{pokemonName}</h3>
