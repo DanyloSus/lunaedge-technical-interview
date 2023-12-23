@@ -24,7 +24,7 @@
 }
 
 .Select__Values {
-  @apply w-full cursor-pointer flex gap-2 overflow-hidden;
+  @apply w-full cursor-pointer flex gap-2 overflow-x-auto;
 }
 
 .Select__Button {
@@ -44,7 +44,7 @@
 }
 
 .Select__List.Show {
-  @apply flex flex-wrap justify-between;
+  @apply flex flex-wrap justify-around;
 }
 
 .Select__List__Element {

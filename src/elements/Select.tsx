@@ -1,9 +1,14 @@
+// libraries
 import { useState } from "react";
 
-import "./Select.css";
+// elements
 import Badge from "./Badge";
 import { PokemonOption, PokemonValue } from "../App";
 
+// styles
+import "./Select.css";
+
+// types
 export type SelectProps = {
   placeholder: string;
   values: PokemonValue[];
@@ -13,22 +18,25 @@ export type SelectProps = {
   disabled: boolean;
 };
 
+// select elemeny
 const Select = (props: SelectProps) => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false); // state for check is select input open
 
   const addPokemon = (pokemon: PokemonOption, index: number) => {
+    // function for add pokemons
     if (props.values.length <= 3) {
-      props.onChange([...props.values, { ...pokemon, id: index }]);
+      props.onChange([...props.values, { ...pokemon, id: index }]); // add pokemons to user's array, and add id
     }
   };
 
   const deletePokemon = (pokemon: PokemonValue) => {
-    const filtered = props.values.filter((value) => value.id !== pokemon.id);
-    console.log(pokemon);
-    props.onChange(filtered);
+    // function for deleting one user's pokemon
+    const filtered = props.values.filter((value) => value.id !== pokemon.id); // filter list without that one pokemon
+    props.onChange(filtered); // set filtered array of user's pokemons
   };
 
   const clearPokemons = () => {
+    // delete all user's pokemons
     props.onChange([]);
   };
 
@@ -57,14 +65,14 @@ const Select = (props: SelectProps) => {
                   name={pokemon.name}
                   type="delete"
                   onClick={() => {
-                    deletePokemon(pokemon);
+                    deletePokemon(pokemon); // delete pokemon
                   }}
                 />
               ))
             : props.placeholder}
         </span>
       </div>
-      {props.values.length ? (
+      {props.values.length ? ( // if at least one pokemon checked then show svg
         <button
           className="Select__Button"
           onClick={clearPokemons}
@@ -87,6 +95,7 @@ const Select = (props: SelectProps) => {
       <button
         className={`Select__Button`}
         onClick={(e) => {
+          // show list
           e.preventDefault();
           setIsOpen((value) => !value);
         }}
@@ -115,7 +124,7 @@ const Select = (props: SelectProps) => {
               key={id}
               name={option.name}
               type="add"
-              onClick={() => addPokemon(option, id)}
+              onClick={() => addPokemon(option, id) /*Add pokemon*/}
             />
           );
         })}

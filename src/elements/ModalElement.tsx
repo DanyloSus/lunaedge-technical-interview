@@ -1,38 +1,48 @@
+// libraries
 import axios from "axios";
 import { useEffect, useState } from "react";
 
+// styles
 import "./ModalElement.css";
 
-interface TypeObject {
+// types
+type TypeObject = {
+  // pokemon's types type
   slot: number;
   type: {
     url: string;
     name: string;
   };
-}
+};
 
-interface ModalProps {
+type ModalProps = {
+  // props type
   url: string;
-}
+};
 
 const ModalElement = (props: ModalProps) => {
-  const [pokemonName, setPokemonName] = useState<string>();
-  const [pokemonSprite, setPokemonSprite] = useState<string>();
-  const [pokemonTypes, setPokemonTypes] = useState<TypeObject[]>();
+  const [pokemonName, setPokemonName] = useState<string>(); // state of pokemon's name
+  const [pokemonSprite, setPokemonSprite] = useState<string>(); // state of pokemon's sprite
+  const [pokemonTypes, setPokemonTypes] = useState<TypeObject[]>(); // state of pokemon's types array
 
   useEffect(() => {
     const urlArray = props.url.split("/");
     const pokemonID = urlArray[urlArray.length - 2];
 
-    axios(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/`).then(
-      (response) => {
-        const data = response.data;
-        setPokemonName(data.name);
-        setPokemonSprite(data.sprites.front_default);
-        setPokemonTypes(data.types);
-        return;
-      }
-    );
+    try {
+      axios(`https://pokeapi.co/api/v2/pokemon/${pokemonID}/`).then(
+        // get the pokemon info
+        (response) => {
+          const data = response.data; // get data of the pokemon
+          setPokemonName(data.name); // set the pokemon's name
+          setPokemonSprite(data.sprites.front_default); // set the pokemon's sprite
+          setPokemonTypes(data.types); // set the pokemon's types
+          return;
+        }
+      );
+    } catch (error) {
+      console.error("Error fetching Pokemon data:", error); // if some error, print it
+    }
   }, []);
 
   return (

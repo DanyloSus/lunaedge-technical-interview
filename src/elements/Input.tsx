@@ -1,8 +1,14 @@
+// libraries
 import { ForwardedRef, ReactElement, ReactNode, forwardRef } from "react";
-import "./Input.css";
+
+// elements
 import Select, { SelectProps } from "./Select";
 import Popover from "./Popover";
 
+// styles
+import "./Input.css";
+
+// interfaces
 interface InputProps {
   label: string;
   id: string;
@@ -19,6 +25,7 @@ interface InputProps {
   select?: SelectProps;
 }
 
+// input element that passes ref
 const Input = forwardRef(
   (props: InputProps, ref: ForwardedRef<HTMLInputElement>) => {
     return (
@@ -26,7 +33,7 @@ const Input = forwardRef(
         <div className="Input__InfoBlock">
           <label htmlFor={props.id} className="Input__Label">
             {props.label}
-            {props.popText ? (
+            {props.popText ? ( // if input has pop text then it add pop ico and element
               <div className="Popover__Menu">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -49,9 +56,10 @@ const Input = forwardRef(
           </span>
         </div>
         <div className="Input__InputBlock">
-          {props.select ? (
+          {props.select ? ( // check is props have select
             <Select {...props.select} error={props.error} />
           ) : (
+            // if not then main input element
             <>
               {props.icon}
               <input

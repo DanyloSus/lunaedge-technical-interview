@@ -1,5 +1,5 @@
 .Badge {
-  @apply flex gap-1 items-center w-min max-h-7 bg-[#f4f4f6] text-black rounded-lg py-[2px] px-[10px] cursor-pointer transition-transform;
+  @apply flex gap-1 items-center w-min max-h-7 bg-[#f4f4f6] text-black rounded-lg py-[2px] px-[10px] cursor-pointer transition-all;
 
   &:hover > .Badge__Icon {
     @apply opacity-100 scale-125;

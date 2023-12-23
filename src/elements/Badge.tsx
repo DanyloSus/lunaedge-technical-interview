@@ -1,12 +1,14 @@
-import { MouseEventHandler } from "react";
+// Styles
 import "./Badge.css";
 
+// types
 type BadgeProps = {
   name: string;
-  type: "add" | "delete";
+  type: "add" | "delete"; // if delete then add svg of cross
   onClick: () => void;
 };
 
+// badge component
 const Badge = (props: BadgeProps) => {
   return (
     <div className="Badge" onClick={props.onClick}>

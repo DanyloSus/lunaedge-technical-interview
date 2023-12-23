@@ -1,10 +1,12 @@
+// Styles
 import "./Button.css";
 
+// interfaces
 interface ButtonProps {
   variant: "outline" | "primary" | "text";
   text: string;
   size: "xs" | "sm" | "base" | "lg" | "xl";
-  disabled: boolean;
+  disabled?: boolean;
   onClick?: () => void;
 }
 

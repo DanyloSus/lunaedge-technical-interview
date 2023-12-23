@@ -1,69 +1,78 @@
+// Libraries
 import { FormEvent, createRef, useEffect, useState } from "react";
+import axios from "axios";
+
+// Elements
 import Input from "./elements/Input";
 import Button from "./elements/Button";
-
-import "./App.css";
-import axios from "axios";
 import useValidation from "./hooks/useValidation";
 import ModalElement from "./elements/ModalElement";
 import useHandleChange from "./hooks/useHandleChange";
 
+//styles
+import "./App.css";
+
+// types
 export type PokemonOption = {
+  // options of API array
   name: string;
   url: string;
 };
 
 export type PokemonValue = {
+  // values of user's pokemons
   name: string;
   url: string;
   id: number;
 };
 
+// main Element
 function App() {
-  const [isModal, setIsModal] = useState<Boolean>(false);
-  const [isRegistered, setIsRegistered] = useState<Boolean>(false);
+  const [isModal, setIsModal] = useState<Boolean>(false); // state for check is modal active
+  const [isRegistered, setIsRegistered] = useState<Boolean>(false); // state for check is registered screen active
 
-  const [pokemons, setPokemons] = useState<PokemonValue[]>([]);
-  const [pokemonArray, setPokemonArray] = useState<PokemonOption[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonValue[]>([]); // array for save user's pokemons
+  const [pokemonArray, setPokemonArray] = useState<PokemonOption[]>([]); // array of pokemons
 
-  const [nameInfo, setNameInfo] = useState<string>("Write your name, Champ");
+  const [nameInfo, setNameInfo] = useState<string>("Write your name, Champ"); // Info text for name input
   const [surnameInfo, setSurnameInfo] = useState<string>(
     "Write your surname, Champ"
-  );
+  ); // Info text for surname input
   const [selectInfo, setSelectInfo] = useState<string>(
     "In Pokemon Tower you can use only four your Pokemons"
-  );
+  ); // Info text for select input
 
-  const [nameError, setNameError] = useState<boolean>(false);
-  const [surnameError, setSurnameError] = useState<boolean>(false);
-  const [selectError, setSelectError] = useState<boolean>(false);
+  const [nameError, setNameError] = useState<boolean>(false); // State for check does name input have an error
+  const [surnameError, setSurnameError] = useState<boolean>(false); // State for check does surname input have an error
+  const [selectError, setSelectError] = useState<boolean>(false); // State for check does select input have an error
 
-  const [name, setName] = useState<string | undefined>("");
-  const [surname, setSurname] = useState<string | undefined>("");
+  const [name, setName] = useState<string | undefined>(""); // State for user's name
+  const [surname, setSurname] = useState<string | undefined>(""); // State for user's surname
 
-  const nameRef = createRef<HTMLInputElement>();
-  const surnameRef = createRef<HTMLInputElement>();
+  const nameRef = createRef<HTMLInputElement>(); // Ref for get value of name input
+  const surnameRef = createRef<HTMLInputElement>(); // Ref for get value of surname input
 
   useEffect(() => {
     try {
       axios
-        .get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=1302")
-        .then((response) => setPokemonArray(response.data.results));
+        .get("https://pokeapi.co/api/v2/pokemon?offset=0&limit=10000") // get array of pokemons
+        .then((response) => setPokemonArray(response.data.results)); // set array of pokemons
     } catch (error) {
-      console.error("Error fetching Pokémon data:", error);
+      console.error("Error fetching Pokemon data:", error); // if some error, print it
     }
   }, []);
 
   const handleCancel = () => {
-    console.log(name, surname);
-
+    // close modal window
     setIsModal(false);
     setPokemons([]);
   };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    // onSubmit function for form
     e.preventDefault();
     if (useValidation(name)) {
+      // check validation of name input
       setNameInfo("Write your name, Champ");
       setNameError(false);
     } else {
@@ -72,6 +81,7 @@ function App() {
     }
 
     if (useValidation(surname)) {
+      // check validation of surname input
       setSurnameInfo("Write your name, Champ");
       setSurnameError(false);
     } else {
@@ -80,6 +90,7 @@ function App() {
     }
 
     if (pokemons.length > 0 && pokemons.length <= 4) {
+      // check validation of select input
       setSelectInfo("In Pokemon Tower you can use only four your Pokemons");
       setSelectError(false);
     } else {
@@ -93,15 +104,14 @@ function App() {
       pokemons.length > 0 &&
       pokemons.length <= 4
     ) {
+      // if everything is awesome then go to modal screen
       setIsModal(true);
     }
-
-    console.log();
   };
 
   return (
     <main className="Main">
-      {isRegistered ? (
+      {isRegistered ? ( //check is register page active
         <div className="text-center">
           <h1 className="font-bold text-2xl">
             Congratulations{" "}
@@ -112,7 +122,7 @@ function App() {
           </h1>
           <p>You and your pokemons are registered to Pokemon Tower!</p>
         </div>
-      ) : isModal ? (
+      ) : isModal ? ( //check is modal page active
         <>
           <div className="Modal">
             <div className="Modal__Header">
@@ -160,6 +170,7 @@ function App() {
           </div>
         </>
       ) : (
+        // render main page
         <>
           <h1 className="Main__Header">Register Form for Pokemon Tower</h1>
           <p className="Main__Paragraph">
