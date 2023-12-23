@@ -1,7 +1,6 @@
-import { ChangeEvent, FormEvent, createRef, useEffect, useState } from "react";
+import { FormEvent, createRef, useEffect, useState } from "react";
 import Input from "./elements/Input";
 import Button from "./elements/Button";
-import Select from "./elements/Select";
 
 import "./App.css";
 import axios from "axios";
@@ -22,6 +21,7 @@ export type PokemonValue = {
 
 function App() {
   const [isModal, setIsModal] = useState<Boolean>(false);
+  const [isRegistered, setIsRegistered] = useState<Boolean>(false);
 
   const [pokemons, setPokemons] = useState<PokemonValue[]>([]);
   const [pokemonArray, setPokemonArray] = useState<PokemonOption[]>([]);
@@ -101,7 +101,18 @@ function App() {
 
   return (
     <main className="Main">
-      {isModal ? (
+      {isRegistered ? (
+        <div className="text-center">
+          <h1 className="font-bold text-2xl">
+            Congratulations{" "}
+            <span className="text-2xl capitalize">
+              {name} {surname}
+            </span>
+            !
+          </h1>
+          <p>You and your pokemons are registered to Pokemon Tower!</p>
+        </div>
+      ) : isModal ? (
         <>
           <div className="Modal">
             <div className="Modal__Header">
@@ -143,6 +154,7 @@ function App() {
                 text="Save"
                 size="base"
                 disabled={false}
+                onClick={() => setIsRegistered(true)}
               />
             </div>
           </div>
@@ -224,7 +236,7 @@ function App() {
                 options: pokemonArray,
                 placeholder: "Check",
                 onChange: (pokemon) => setPokemons(pokemon),
-                disabled: true,
+                disabled: false,
               }}
             />
             <Button
