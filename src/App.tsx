@@ -175,6 +175,13 @@ function App() {
                 type="text"
                 id="name"
                 required
+                popText={
+                  <p>
+                    Your name is required
+                    <br />
+                    Your name should be from 2 to 12 length
+                  </p>
+                }
                 onChange={() =>
                   useHandleChange(setName, nameRef.current!.value)
                 }
@@ -204,6 +211,13 @@ function App() {
                 information={surnameInfo}
                 disabled={false}
                 error={surnameError}
+                popText={
+                  <p>
+                    Your surname is required
+                    <br />
+                    Your surname should be from 2 to 12 length
+                  </p>
+                }
                 onChange={() =>
                   useHandleChange(setSurname, surnameRef.current!.value)
                 }
@@ -231,6 +245,7 @@ function App() {
               required
               id="pokemons"
               error={selectError}
+              popText={<p>You can have from 1 to 4 pokemons</p>}
               select={{
                 values: pokemons,
                 options: pokemonArray,

@@ -1,0 +1,11 @@
+.Popover__Menu {
+  @apply relative;
+
+  &:hover > .Popover {
+    @apply block;
+  }
+}
+
+.Popover {
+  @apply hidden absolute -top-1 z-10 w-28 left-8 bg-black text-white p-1 border-none before:border-t-[10px] before:border-b-[10px] before:border-r-[10px] before:border-r-black before:border-solid before:border-transparent before:absolute before:right-full;
+}
